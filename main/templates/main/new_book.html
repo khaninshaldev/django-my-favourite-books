@@ -1,0 +1,10 @@
+{% extends "./base.html" %} {% block title %} My Favourite Books {% endblock %}
+{% block content %}
+
+<h1>Add a book to the list:</h1>
+<form method="POST" action="{% url 'new_book' %}" enctype="multipart/form-data">
+  {% csrf_token %} {{ book_form }}
+
+  <button type="submit">Add book</button>
+</form>
+{% endblock content %}
