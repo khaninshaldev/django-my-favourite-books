@@ -13,11 +13,25 @@ def newBook(request):
         book_form = BookForm(request.POST)
         if book_form.is_valid():
             book_form.save()
-        return redirect('/')
+            return redirect('/')
 
 
     context = { 'book_form': BookForm }
     return render(request, 'main/new_book.html', context)    
+
+
+def editBook(request, id):
+    selected_book = Book.objects.get(id=id)
+    book_form = BookForm(instance=selected_book)
+
+    if request.POST:
+        book_form = BookForm(request.POST, instance=selected_book)
+        if book_form.is_valid():
+            book_form.save()
+            return redirect('/')
+
+    context = { 'book_form': book_form }
+    return render(request, 'main/edit_book.html', context)   
 
 def deleteBook(request, id):
     book = Book.objects.get(id=id)

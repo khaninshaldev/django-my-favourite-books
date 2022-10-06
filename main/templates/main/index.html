@@ -8,6 +8,7 @@
 
   <li>
     "{{ book.title }}" by {{ book.author }}
+    <a href="{% url 'edit_book' book.id %}"><button>Edit</button></a>
     <a href="{% url 'delete_book' book.id %}"><button>Delete</button></a>
   </li>
 
